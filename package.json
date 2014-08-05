@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "name": "upubsub",
+  "description": "Basic async Publish/Subscribe for nodejs",
+  "repository": "https://github.com/ahri/upubsub.git",
+  "license": "MIT",
+  "main": "./upubsub.js",
+  "devDependencies": {
+    "chai": "^1.9.1"
+  }
+}
