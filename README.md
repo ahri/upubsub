@@ -1,4 +1,4 @@
-uPubsub
+uPubSub
 =======
 
 A micro-publish/subscribe library providing such revolutionary
