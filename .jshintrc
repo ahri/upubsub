@@ -1,0 +1,33 @@
+{
+  "newcap": false,
+
+  "globalstrict": true,
+  "globals": {
+    "console": false,
+    "document": false,
+    "require": false,
+    "module": false,
+    "Buffer": false,
+    "setTimeout": false,
+    "process": false,
+    "__filename": false,
+    "__dirname": false,
+
+    "localStorage": false,
+    "XMLHttpRequest": false,
+
+    "angular": false,
+    "casper": false,
+
+    "browser": false,
+    "element": false,
+    "by": false,
+
+    "describe": false,
+    "before": false,
+    "after": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "it": false
+  }
+}

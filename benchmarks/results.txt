@@ -1,0 +1,78 @@
+l0-g1-a0.js
+uPubSub Production x 6,379,803 ops/sec ±0.46% (100 runs sampled)
+EventEmitter2 x 5,756,763 ops/sec ±1.46% (98 runs sampled)
+uPubSub x 339,873 ops/sec ±3.05% (74 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+
+l0-g1-a10.js
+uPubSub Production x 5,055,050 ops/sec ±1.27% (93 runs sampled)
+EventEmitter2 x 5,237,961 ops/sec ±4.85% (91 runs sampled)
+uPubSub x 243,658 ops/sec ±7.46% (69 runs sampled)
+
+Fastest is EventEmitter2
+=====================
+
+l0-g1-a3.js
+uPubSub Production x 6,129,167 ops/sec ±0.10% (103 runs sampled)
+EventEmitter2 x 5,870,140 ops/sec ±0.18% (103 runs sampled)
+uPubSub x 295,474 ops/sec ±4.86% (70 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+
+l1-g0-a0.js
+uPubSub Production x 25,297,967 ops/sec ±0.19% (101 runs sampled)
+EventEmitter x 22,747,245 ops/sec ±0.22% (100 runs sampled)
+EventEmitter2 x 18,616,442 ops/sec ±5.63% (97 runs sampled)
+uPubSub x 362,315 ops/sec ±5.74% (65 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+
+l1-g0-a10.js
+uPubSub Production x 4,605,657 ops/sec ±0.25% (99 runs sampled)
+EventEmitter x 4,773,173 ops/sec ±0.45% (97 runs sampled)
+EventEmitter2 x 4,810,294 ops/sec ±0.19% (102 runs sampled)
+uPubSub x 291,524 ops/sec ±5.28% (71 runs sampled)
+
+Fastest is EventEmitter2
+=====================
+
+l1-g0-a3.js
+uPubSub Production x 20,153,574 ops/sec ±0.19% (99 runs sampled)
+EventEmitter x 15,134,224 ops/sec ±0.10% (103 runs sampled)
+EventEmitter2 x 7,312,647 ops/sec ±0.33% (100 runs sampled)
+uPubSub x 339,525 ops/sec ±6.27% (75 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+
+l3-g0-a0.js
+uPubSub Production x 13,378,310 ops/sec ±1.74% (98 runs sampled)
+EventEmitter x 9,378,482 ops/sec ±1.41% (94 runs sampled)
+EventEmitter2 x 2,236,607 ops/sec ±1.94% (94 runs sampled)
+uPubSub x 121,443 ops/sec ±5.87% (62 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+
+l3-g0-a10.js
+uPubSub Production x 4,154,187 ops/sec ±0.50% (97 runs sampled)
+EventEmitter x 1,910,455 ops/sec ±0.62% (98 runs sampled)
+EventEmitter2 x 1,470,361 ops/sec ±0.31% (97 runs sampled)
+uPubSub x 108,540 ops/sec ±4.41% (75 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+
+l3-g0-a3.js
+uPubSub Production x 7,514,460 ops/sec ±0.18% (98 runs sampled)
+EventEmitter x 6,207,783 ops/sec ±0.50% (96 runs sampled)
+EventEmitter2 x 2,007,538 ops/sec ±0.94% (100 runs sampled)
+uPubSub x 60,663 ops/sec ±9.64% (47 runs sampled)
+
+Fastest is uPubSub Production
+=====================
+

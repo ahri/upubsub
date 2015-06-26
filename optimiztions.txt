@@ -1,0 +1,7 @@
+NodeJS:
+ - don't check .length each iteration
+ - (?) loop down to zero: while(i--) {}
+ - assignment of "typeof val" is more expensive than just checking each time
+ - "switch (typeof val)" seems to assign
+ - writing to arguments[0] is a massive hit
+ - so is Array.prototype.slice.call(arguments, 1)

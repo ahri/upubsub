@@ -6,6 +6,9 @@
   "license": "MIT",
   "main": "./upubsub.js",
   "devDependencies": {
-    "chai": "^1.9.1"
+    "benchmark": "^1.0.0",
+    "chai": "^1.9.1",
+    "eventemitter2": "^0.4.14",
+    "watchy": "^0.6.2"
   }
 }
