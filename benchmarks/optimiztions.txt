@@ -5,3 +5,5 @@ NodeJS:
  - "switch (typeof val)" seems to assign
  - writing to arguments[0] is a massive hit
  - so is Array.prototype.slice.call(arguments, 1)
+ - same for var args = [].slice.call(arguments); args.shift();
+ - typeof handler === "undefined" is slower than handler === undefined

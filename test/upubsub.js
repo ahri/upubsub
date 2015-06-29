@@ -75,6 +75,14 @@ var expect = require('chai').expect,
       upubsub.publish('foo');
     });
 
+    it('should emit to both global and event and listeners, in that order', function (done) {
+      var globalCalled = false;
+
+      upubsub.subscribeGlobal(function () { globalCalled = true; });
+      upubsub.subscribe("test", function () { if (globalCalled) { done(); } });
+      upubsub.publish("test");
+    });
+
     it('should allow unsubscription for global subs', function () {
       var called = false, f = function () {
         called = true;

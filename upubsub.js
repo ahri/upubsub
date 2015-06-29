@@ -118,22 +118,22 @@ function Production() {
         switch (argslen) {
           case 1:
             listener(type);
-            return;
+            break;
           case 2:
             listener(type, arguments[1]);
-            return;
+            break;
           case 3:
             listener(type, arguments[1], arguments[2]);
-            return;
+            break;
           case 4:
             listener(type, arguments[1], arguments[2], arguments[3]);
-            return;
+            break;
           case 5:
             listener(type, arguments[1], arguments[2], arguments[3], arguments[4]);
-            return;
+            break;
           case 6:
             listener(type, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
-            return;
+            break;
           default:
             listener.apply(null, arguments);
         }
@@ -162,7 +162,7 @@ function Production() {
             listener(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
             break;
           default:
-            var args = new Array(argslen - 1);
+            var args = Array(argslen - 1);
             for (i = 1; i < argslen; i++) {
               args[i - 1] = arguments[i];
             }
