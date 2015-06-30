@@ -1,138 +1,134 @@
 'use strict';
 
 function uPubSub() {
-  var registrations = {};
-  var globalRegistrations = [];
+  var listeners = {};
+  var globalListeners = [];
 
   return {
-    subscribe: function (type, func) {
-      if (registrations[type] === undefined) {
-        registrations[type] = [];
+    subscribe: function (name, listener) {
+      if (listeners[name] === undefined) {
+        listeners[name] = [];
       }
 
-      registrations[type].push(func);
+      listeners[name].push(listener);
     },
 
-    subscribeGlobal: function (func) {
-      globalRegistrations.push(func);
+    subscribeGlobal: function (listener) {
+      globalListeners.push(listener);
     },
 
-    unsubscribe: function (type, func) {
-      if (registrations[type] !== undefined) {
-        for (var i = 0; i < registrations[type].length; i++) {
-          if (registrations[type][i] === func) {
-            registrations[type].splice(i, 1);
+    unsubscribe: function (name, listener) {
+      if (listeners[name] !== undefined) {
+        for (var i = 0; i < listeners[name].length; i++) {
+          if (listeners[name][i] === listener) {
+            listeners[name].splice(i, 1);
             return;
           }
         }
       }
 
-      throw Error("Couldn't find subscription to remove");
+      throw Error("Couldn't find listener to remove");
     },
 
-    unsubscribeGlobal: function (func) {
-      for (var i = 0; i < globalRegistrations.length; i++) {
-        if (globalRegistrations[i] === func) {
-          globalRegistrations.splice(i, 1);
+    unsubscribeGlobal: function (listener) {
+      for (var i = 0; i < globalListeners.length; i++) {
+        if (globalListeners[i] === listener) {
+          globalListeners.splice(i, 1);
           return;
         }
       }
 
-      throw Error("Couldn't find subscription to remove");
+      throw Error("Couldn't find listener to remove");
     },
 
-    publish: function (type, message) {
-      var i, args = [];
-      for (i = 1; i < arguments.length; i++) {
-        args.push(arguments[i]);
-      }
+    publish: function (name, message) {
+      var args = [].slice.call(arguments, 1);
 
-      for (i = 0; i < globalRegistrations.length; i++) {
-        process.nextTick(Object.bind.apply(globalRegistrations[i], [null, type].concat(args)));
-      }
+      globalListeners.forEach(function (reg) {
+        setTimeout(Object.bind.apply(reg, [null, name].concat(args)), 0);
+      });
 
-      if (registrations[type] === undefined) {
+      if (listeners[name] === undefined) {
         return;
       }
 
-      for (i = 0; i < registrations[type].length; i++) {
-        process.nextTick(Object.bind.apply(registrations[type][i], [null].concat(args)));
-      }
+      listeners[name].forEach(function (reg) {
+        setTimeout(Object.bind.apply(reg, [null].concat(args)), 0);
+      });
     },
   };
 }
 
 function Production() {
-  var registrations = {},
-      globalRegistrations = [];
+  var listeners = {},
+      globalListeners = [];
 
   return {
-    subscribe: function (type, func) {
-      if (registrations[type] === undefined) {
-        registrations[type] = [];
+    subscribe: function (name, listener) {
+      if (listeners[name] === undefined) {
+        listeners[name] = [];
       }
 
-      registrations[type].push(func);
+      listeners[name].push(listener);
     },
 
-    unsubscribe: function (type, func) {
-      for (var i = 0; i < registrations[type].length; i++) {
-        if (registrations[type][i] === func) {
-          registrations[type].splice(i, 1);
-          if (registrations[type].length === 0) {
-            registrations[type] = registrations[type][0];
+    subscribeGlobal: function (listener) {
+      globalListeners.push(listener);
+    },
+
+    unsubscribe: function (name, listener) {
+      if (listeners[name] !== undefined) {
+        for (var i = 0; i < listeners[name].length; i++) {
+          if (listeners[name][i] === listener) {
+            listeners[name].splice(i, 1);
+            return;
           }
+        }
+      }
+
+      throw Error("Couldn't find listener to remove");
+    },
+
+    unsubscribeGlobal: function (listener) {
+      for (var i = 0; i < globalListeners.length; i++) {
+        if (globalListeners[i] === listener) {
+          globalListeners.splice(i, 1);
           return;
         }
       }
 
-      throw Error("Couldn't find subscription to remove");
+      throw Error("Couldn't find listener to remove");
     },
 
-    subscribeGlobal: function (func) {
-      globalRegistrations.push(func);
-    },
-
-    unsubscribeGlobal: function (func) {
-      for (var i = 0; i < globalRegistrations.length; i++) {
-        if (globalRegistrations[i] === func) {
-          globalRegistrations.splice(i, 1);
-          return;
-        }
-      }
-
-      throw Error("Couldn't find subscription to remove");
-    },
-
-    publish: function (type) {
+    publish: function (name, message) {
       var i,
           listener,
-          handler = registrations[type],
+          handler = listeners[name],
           argslen = arguments.length,
           registrationsLength = handler === undefined ? 0: handler.length,
-          globalRegistrationsLength = globalRegistrations.length;
+          globalRegistrationsLength = globalListeners.length;
 
       for (i = 0; i < globalRegistrationsLength; i++) {
-        listener = globalRegistrations[i];
+        listener = globalListeners[i];
 
         switch (argslen) {
           case 1:
-            listener(type);
+            listener(name);
             break;
           case 2:
-            listener(type, arguments[1]);
+            listener(name, arguments[1]);
             break;
           case 3:
-            listener(type, arguments[1], arguments[2]);
+            listener(name, arguments[1], arguments[2]);
             break;
           case 4:
-            listener(type, arguments[1], arguments[2], arguments[3]);
+            listener(name, arguments[1], arguments[2], arguments[3]);
             break;
           case 5:
-            listener(type, arguments[1], arguments[2], arguments[3], arguments[4]);
+            listener(name, arguments[1], arguments[2], arguments[3], arguments[4]);
             break;
           case 6:
-            listener(type, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+            listener(name, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
             break;
           default:
             listener.apply(null, arguments);
