@@ -18,7 +18,7 @@ needing to know the event name. Crazy.
 
 ```javascript
 var uPubSub = require('upubsub'),
-    upubsub = new uPubSub();
+    upubsub = uPubSub();
 
 function handler(message) {
   console.log("Received message '" + message + "'");
@@ -56,13 +56,18 @@ upubsub.unsubscribe(globalHandler);
 - **When are you going to support topics?**
 
   > Never. Use [PubSubJS](https://github.com/mroderick/PubSubJS),
-  > [RadioJS](http://radio.uxder.com) or [Arbiter](http://arbiterjs.com)
+  > [RadioJS](http://radio.uxder.com) or [Arbiter](http://arbiterjs.com),
+  > [EventEmitter2](https://github.com/asyncly/EventEmitter2) also does a
+  > sterling job
 
 - **Why can't I switch over to synchronous events?**
 
   > You don't need to because you're firing events at a boundary and
   > wouldn't couple your own behaviour to your events. Would you?
 
-- **What about Promises?**
+- **No seriously, async is slow, this needs to PERFORM!**
 
-  > This I've not given much thought to - I will give it due consideration
+  > Ok, fine, use `uPubSub.Production()` then, it's synchronous,
+  > [fast](https://github.com/ahri/upubsub/blob/master/benchmarks/results.txt) and
+  > adheres to the same API. I still suggest developing against the sync version
+  > to avoid coupling your domain behaviour to that of your listeners.
